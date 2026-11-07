@@ -5,7 +5,7 @@
 
 # Creating Grid -> grid[Row][Column]
 
-def create_grid(rows, columns):
+def create_grid(rows: int, columns: int) -> list[list[int]]:
     """Creates an empty grid populated entirely with dead cells (0)."""
 
     return [[0 for _ in range(columns)] for _ in range(rows)]
@@ -27,7 +27,7 @@ neighbor_offset = [
 # - and the right edge to connect to the left 
 # - for a continuous neighbor 
 
-def count_live_neighbors(grid: list[list[int]], row: int, column: int, wrap = True) -> int:
+def count_live_neighbors(grid: list[list[int]], row: int, column: int, wrap = False) -> int:
     """Counts the number of living neighbors around grid[row][col]."""
 
     rows = len(grid)                        # stores number of rows in a grid
@@ -112,7 +112,7 @@ def next_generation(grid: list[list[int]], wrap: bool = True) -> list[list[int]]
 
 
 if __name__ == "__main__":
-    # 5x5  grid with a horizontal 3-cell blinker in the center
+    # 5x5  grid with a horizontal 3-cell blinker in the center 
 
     test_grid = create_grid(5, 5)
     test_grid[2][1] = 1

@@ -8,6 +8,10 @@
 def create_grid(rows: int, columns: int) -> list[list[int]]:
     """Creates an empty grid populated entirely with dead cells (0)."""
 
+    # Error handling 
+    if rows <= 0 or columns <= 0:
+        raise ValueError("Grid dimensions must be positive")
+
     return [[0 for _ in range(columns)] for _ in range(rows)]
 
 
@@ -69,7 +73,7 @@ def count_live_neighbors(grid: list[list[int]], row: int, column: int, wrap = Fa
 
 # Creates a new grid with the ne generation of living cells (does not update the grid)
 
-def next_generation(grid: list[list[int]], wrap: bool = True) -> list[list[int]]:
+def next_generation(grid: list[list[int]], wrap: bool = False) -> list[list[int]]:
     """Calculates and returns the next generation of the grid."""
 
     rows = len(grid)
@@ -110,6 +114,20 @@ def next_generation(grid: list[list[int]], wrap: bool = True) -> list[list[int]]
 
     return new_grid
 
+def display_grid(grid: list[list[int]]) -> None:
+    """Displays the grid using (#) for alive and (.) for dead."""
+
+    for row in grid:
+        symbols = []
+
+        for cell in row:
+            if cell == 1:
+                symbols.append('#')
+            else:
+                symbols.append('.')
+
+        print(' '.join(symbols))
+
 
 if __name__ == "__main__":
     # 5x5  grid with a horizontal 3-cell blinker in the center 
@@ -121,48 +139,15 @@ if __name__ == "__main__":
 
     # Test Grid
     print("Generation 0 (Horizontal):")
-    g = []
-    for row in test_grid:
-        r = []
-        for cell in row:
-            if cell:
-                r.append('#')
-            else:
-                r.append('.')
-        g.append(' '.join(r))
-    display = '\n'.join(g)
-
-    print(display)
+    display_grid(test_grid)
 
     # Generation 1
     gen_1 = next_generation(test_grid)
     print("\nGeneration 1 (Expected Vertical):")
-    g = []
-    for row in gen_1:
-        r = []
-        for cell in row:
-            if cell:
-                r.append("#")
-            else:
-                r.append('.')
-        g.append(' '.join(r))
-    display = '\n'.join(g)
-
-    print(display)
+    display_grid(gen_1)
 
     # Generation 2
     gen_2 = next_generation(gen_1)
     print('\nGeneration 2 (Expected Horizontal):')
-    g =[]
-    for row in gen_2:
-        r = []
-        for cell in row:
-            if cell:
-                r.append('#')
-            else:
-                r.append('.')
-        g.append(' '.join(r))
-    display = '\n'.join(g)
-
-    print(display)
+    display_grid(gen_2)
 

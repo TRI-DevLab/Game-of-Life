@@ -17,7 +17,7 @@
 
 # Window and Grid dimensions 
 CELL_SIZE = 20                          # Pixel size of each square cell 
-GRID_WIDTH = 40                         # Number of Columns
+GRID_WIDTH = 50                         # Number of Columns
 GRID_HEIGHT = 30                        # Number of rows 
 
 WINDOW_WIDTH = CELL_SIZE * GRID_WIDTH           # 800px

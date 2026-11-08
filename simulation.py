@@ -1,3 +1,5 @@
+import random
+
 # --- ---- Simulation of Game of Life ---- ---
 
 # 1 = Alive
@@ -127,6 +129,24 @@ def display_grid(grid: list[list[int]]) -> None:
                 symbols.append('.')
 
         print(' '.join(symbols))
+
+def randomize_grid(rows: int, columns: int, density: float = 0.28) -> list[list[int]]:
+    """Created a grid where each cell has a chance (density) of being alive."""
+    grid = []
+    for _ in range(rows):
+        row = []
+        for _ in range(columns):
+            if random.random() < density:
+                row.append(1)
+            else:
+                row.append(0)
+        grid.append(row)
+
+    return grid                
+
+def clear_grid(rows: int, columns: int) -> list[list[int]]:
+    """Returns a fresh empty grid"""
+    return create_grid(rows, columns)
 
 
 if __name__ == "__main__":
